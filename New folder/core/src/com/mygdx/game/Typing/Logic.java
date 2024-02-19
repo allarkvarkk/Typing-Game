@@ -4,35 +4,36 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Logic {
     private static long lineCount, randomLineNumber;
 
-   public static String getNewRandomString(){
-       StringBuilder sb = new StringBuilder();
-
-       return sb.toString();
+   public static ArrayList<String> getNewRandomString(){
+       ArrayList<String> paragraph = new ArrayList<>();
+       Random random = new Random();
+       int i = random.nextInt(20) + 40;
+       for(; i >= 0; i --){
+           paragraph.add(getRandomWord());
+       }
+       return paragraph;
     }
 
 //    public static String getRandomWord(){
 //
 //    }
-public static void openFile() {
+public static String getRandomWord() {
     // Get a FileHandle to the file located in the assets folder
     FileHandle fileHandle = Gdx.files.internal("words.txt");
 
-    // Check if the file exists
     if (fileHandle.exists()) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(fileHandle.read()))) {
             // Read the lines from the file
             long lineCount = reader.lines().count();
             if (lineCount == 0) {
                 System.out.println("File is empty");
-                return;
+                return "error";
             }
 
             Random random = new Random();
@@ -45,13 +46,14 @@ public static void openFile() {
             // Skip to the random line and read it
             String randomLine = newReader.lines().skip(randomLineNumber - 1).findFirst().orElse(null);
 
-            System.out.println("Random Line: " + randomLine);
+            return randomLine;
         } catch (IOException e) {
             e.printStackTrace();
         }
     } else {
         System.out.println("File does not exist: " + fileHandle.path());
     }
+    return "error";
 }
 
 

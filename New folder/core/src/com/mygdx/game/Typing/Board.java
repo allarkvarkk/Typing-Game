@@ -2,9 +2,13 @@ package com.mygdx.game.Typing;
 
 import com.badlogic.gdx.Screen;
 
-public class Board implements Screen {
+import java.util.ArrayList;
 
+public class Board implements Screen {
+    private ArrayList<String> s;
     public Board(){
+        s= new ArrayList<>();
+        s = Logic.getNewRandomString();
     }
 
     @Override
@@ -14,7 +18,9 @@ public class Board implements Screen {
 
     @Override
     public void render(float delta) {
-        Logic.openFile();
+
+      System.out.println(s);
+        //System.out.println(Logic.getRandomWord());
     }
 
     @Override
