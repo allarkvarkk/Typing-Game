@@ -5,8 +5,6 @@ import com.badlogic.gdx.Screen;
 public class Board implements Screen {
 
     public Board(){
-
-
     }
 
     @Override
@@ -16,7 +14,7 @@ public class Board implements Screen {
 
     @Override
     public void render(float delta) {
-
+        Logic.openFile();
     }
 
     @Override
