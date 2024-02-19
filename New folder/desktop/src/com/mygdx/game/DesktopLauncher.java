@@ -8,7 +8,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
-		config.setTitle("Tetris-GDX");
+		config.setTitle("Typing Game");
 		new Lwjgl3Application(new Engine(), config);
 	}
 }
